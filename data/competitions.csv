@@ -1,0 +1,32 @@
+competition_id,competition_code,name,sub_type,type,country_id,country_name,domestic_league_code,confederation,total_clubs
+A1,bundesliga,bundesliga,first_tier,domestic_league,127,Austria,A1,europa,12.0
+ARG1,torneo-apertura,torneo-apertura,first_tier,domestic_league,9,Argentina,ARG1,amerika,30.0
+AUS1,a-league-men,a-league-men,first_tier,domestic_league,12,Australia,AUS1,asien,12.0
+BE1,jupiler-pro-league,jupiler-pro-league,first_tier,domestic_league,19,Belgium,BE1,europa,16.0
+BRA1,campeonato-brasileiro-serie-a,campeonato-brasileiro-serie-a,first_tier,domestic_league,26,Brazil,BRA1,amerika,20.0
+C1,super-league,super-league,first_tier,domestic_league,148,Switzerland,C1,europa,12.0
+DK1,superliga,superliga,first_tier,domestic_league,39,Denmark,DK1,europa,12.0
+ES1,laliga,laliga,first_tier,domestic_league,157,Spain,ES1,europa,20.0
+FR1,ligue-1,ligue-1,first_tier,domestic_league,50,France,FR1,europa,18.0
+GB1,premier-league,premier-league,first_tier,domestic_league,189,England,GB1,europa,20.0
+GR1,super-league-1,super-league-1,first_tier,domestic_league,56,Greece,GR1,europa,14.0
+IT1,serie-a,serie-a,first_tier,domestic_league,75,Italy,IT1,europa,20.0
+JAP1,j1-league,j1-league,first_tier,domestic_league,77,Japan,JAP1,asien,20.0
+KR1,supersport-hnl,supersport-hnl,first_tier,domestic_league,37,Croatia,KR1,europa,10.0
+L1,bundesliga,bundesliga,first_tier,domestic_league,40,Germany,L1,europa,18.0
+MEX1,liga-mx-clausura,liga-mx-clausura,first_tier,domestic_league,110,Mexico,MEX1,amerika,18.0
+MLS1,major-league-soccer,major-league-soccer,first_tier,domestic_league,184,United States,MLS1,amerika,30.0
+NL1,eredivisie,eredivisie,first_tier,domestic_league,122,Netherlands,NL1,europa,18.0
+NO1,eliteserien,eliteserien,first_tier,domestic_league,125,Norway,NO1,europa,16.0
+PL1,pko-bp-ekstraklasa,pko-bp-ekstraklasa,first_tier,domestic_league,135,Poland,PL1,europa,18.0
+PO1,liga-portugal,liga-portugal,first_tier,domestic_league,136,Portugal,PO1,europa,18.0
+RO1,superliga,superliga,first_tier,domestic_league,140,Romania,RO1,europa,16.0
+RSK1,k-league-1,k-league-1,first_tier,domestic_league,87,"Korea, South",RSK1,asien,12.0
+RU1,premier-liga,premier-liga,first_tier,domestic_league,141,Russia,RU1,europa,16.0
+SA1,saudi-pro-league,saudi-pro-league,first_tier,domestic_league,146,Saudi Arabia,SA1,asien,18.0
+SC1,scottish-premiership,scottish-premiership,first_tier,domestic_league,190,Scotland,SC1,europa,12.0
+SE1,allsvenskan,allsvenskan,first_tier,domestic_league,147,Sweden,SE1,europa,16.0
+SER1,super-liga-srbije,super-liga-srbije,first_tier,domestic_league,215,Serbia,SER1,europa,16.0
+TR1,super-lig,super-lig,first_tier,domestic_league,174,Türkiye,TR1,europa,18.0
+TS1,chance-liga,chance-liga,first_tier,domestic_league,172,Czech Republic,TS1,europa,16.0
+UKR1,premier-liga,premier-liga,first_tier,domestic_league,177,Ukraine,UKR1,europa,16.0
