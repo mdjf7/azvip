@@ -1,16 +1,6 @@
-/* =========================================================
-   load_data.sql
-   Puni staging tabele (sema stg) iz CSV fajlova.
-   Pre ovoga: create_db.sql
-
-   PUTANJA: repo mora biti na C:\azvip\azvip
-   (na drugom racunaru: raspakuj repo na istu putanju,
-    ili zameni C:\azvip\azvip\data\ svuda kroz Ctrl+H)
-   ========================================================= */
 USE FudbalDB;
 GO
 
--- 1) Isprazni staging, da skripta moze da se pokrece vise puta
 TRUNCATE TABLE stg.competitions;
 TRUNCATE TABLE stg.clubs;
 TRUNCATE TABLE stg.players;
@@ -21,13 +11,6 @@ TRUNCATE TABLE stg.game_events;
 TRUNCATE TABLE stg.transfers;
 TRUNCATE TABLE stg.player_valuations;
 GO
-
-/* 2) BULK INSERT - opcije su iste za svaki fajl:
-      FORMAT = 'CSV'        -> razume navodnike oko teksta sa zarezima
-      FIRSTROW = 2          -> preskoci zaglavlje
-      CODEPAGE = '65001'    -> UTF-8 (é, ü, €...)
-      ROWTERMINATOR = '0x0a'-> kraj reda je \n (tako ih pise Python skripta)
-      TABLOCK               -> brze ucitavanje                          */
 
 BULK INSERT stg.competitions
 FROM 'C:\azvip\azvip\data\competitions.csv'
@@ -66,7 +49,6 @@ FROM 'C:\azvip\azvip\data\player_valuations.csv'
 WITH (FORMAT = 'CSV', FIRSTROW = 2, CODEPAGE = '65001', ROWTERMINATOR = '0x0a', TABLOCK);
 GO
 
-/* 3) PROVERA - broj redova mora da se poklopi sa ispisom filter_dataset.py */
 SELECT 'competitions'      AS tabela, COUNT(*) AS redova, 31     AS ocekivano FROM stg.competitions      UNION ALL
 SELECT 'clubs',                       COUNT(*),           677                 FROM stg.clubs             UNION ALL
 SELECT 'players',                     COUNT(*),           5526                FROM stg.players           UNION ALL
