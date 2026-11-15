@@ -18,11 +18,10 @@ Usage (Windows, from the repo root):
 
 --src : folder with the original CSV files (unzipped transfermarkt-datasets.zip
         or the Kaggle download; .csv and .csv.gz both work)
---out : where the filtered CSV files and data.zip are written
+--out : where the filtered CSV files are written
 """
 
 import argparse
-import zipfile
 from pathlib import Path
 
 import pandas as pd
@@ -69,10 +68,29 @@ def read_all(src: Path, name: str) -> pd.DataFrame:
     return clean_columns(pd.read_csv(find_file(src, name), low_memory=False))
 
 
+def normalize(df: pd.DataFrame) -> pd.DataFrame:
+    """Make values SQL Server friendly.
+    * whole-number floats (17.0 caused by missing values) -> nullable Int64 (17)
+    * date / datetime columns -> plain YYYY-MM-DD (drops ' 00:00:00')
+    """
+    df = df.copy()
+    for col in df.columns:
+        s = df[col]
+        if pd.api.types.is_float_dtype(s):
+            non_null = s.dropna()
+            if len(non_null) and (non_null % 1 == 0).all():
+                df[col] = s.astype("Int64")
+        elif col == "date" or col.endswith("_date") or col == "date_of_birth":
+            parsed = pd.to_datetime(s, errors="coerce")
+            df[col] = parsed.dt.strftime("%Y-%m-%d")
+    return df
+
+
 def save(df: pd.DataFrame, out: Path, name: str, report: list) -> None:
     path = out / f"{name}.csv"
-    # UTF-8 with BOM-less encoding; BULK INSERT reads it with CODEPAGE = '65001'
-    df.to_csv(path, index=False, encoding="utf-8", date_format="%Y-%m-%d")
+    # UTF-8 without BOM, '\n' line endings
+    # -> BULK INSERT with CODEPAGE = '65001', ROWTERMINATOR = '0x0a'
+    normalize(df).to_csv(path, index=False, encoding="utf-8", lineterminator="\n")
     report.append((name, len(df), path.stat().st_size / 1_048_576))
 
 
@@ -135,16 +153,10 @@ def main() -> None:
     ]:
         save(df, args.out, name, report)
 
-    # 8) zip everything (GitHub limit: 100 MB per file)
-    zip_path = args.out / "data.zip"
-    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
-        for name, _, _ in report:
-            z.write(args.out / f"{name}.csv", arcname=f"{name}.csv")
-
     print("\n{:<20}{:>12}{:>10}".format("table", "rows", "MB"))
     for name, rows, mb in report:
         print(f"{name:<20}{rows:>12,}{mb:>10.1f}")
-    print(f"\ndata.zip: {zip_path.stat().st_size / 1_048_576:.1f} MB -> {zip_path}")
+    print(f"\nTotal: {sum(mb for _, _, mb in report):.1f} MB (GitHub limit: 100 MB per file)")
 
 
 if __name__ == "__main__":
