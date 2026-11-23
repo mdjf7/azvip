@@ -24,11 +24,12 @@ SELECT
     DATEPART(QUARTER, dt),
     MONTH(dt),
     DATENAME(MONTH, dt),
-    s.season,
-    CAST(s.season AS NVARCHAR(4)) + N'/' + RIGHT(CAST(s.season + 1 AS NVARCHAR(4)), 2),
+    CASE WHEN MONTH(dt) >= 7 THEN YEAR(dt) ELSE YEAR(dt) - 1 END,
+    CASE WHEN MONTH(dt) >= 7
+         THEN CAST(YEAR(dt) AS NVARCHAR(4)) + N'/' + RIGHT(CAST(YEAR(dt) + 1 AS NVARCHAR(4)), 2)
+         ELSE CAST(YEAR(dt) - 1 AS NVARCHAR(4)) + N'/' + RIGHT(CAST(YEAR(dt) AS NVARCHAR(4)), 2) END,
     CASE WHEN MONTH(dt) >= 7 THEN N'Jesen' ELSE N'Prolece' END
 FROM dani
-CROSS APPLY (SELECT CASE WHEN MONTH(dt) >= 7 THEN YEAR(dt) ELSE YEAR(dt) - 1 END AS season) s
 OPTION (MAXRECURSION 0);
 GO
 

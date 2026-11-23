@@ -11,6 +11,24 @@ WITH sezona_igraca AS (
     FROM dbo.fact_appearance a
     JOIN dbo.dim_date d ON d.date_key = a.date_key
     GROUP BY a.player_id, d.season, a.club_id, a.competition_id
+),
+igrac_sezona AS (
+    SELECT DISTINCT player_id, season
+    FROM sezona_igraca
+),
+vrednost_pocetak AS (
+    SELECT i.player_id, i.season, fv.market_value_in_eur,
+           ROW_NUMBER() OVER (PARTITION BY i.player_id, i.season ORDER BY fv.date_key DESC) AS rb
+    FROM igrac_sezona i
+    JOIN dbo.fact_valuation fv ON fv.player_id = i.player_id
+                              AND fv.date_key <= i.season * 10000 + 801
+),
+vrednost_kraj AS (
+    SELECT i.player_id, i.season, fv.market_value_in_eur,
+           ROW_NUMBER() OVER (PARTITION BY i.player_id, i.season ORDER BY fv.date_key DESC) AS rb
+    FROM igrac_sezona i
+    JOIN dbo.fact_valuation fv ON fv.player_id = i.player_id
+                              AND fv.date_key <= (i.season + 1) * 10000 + 630
 )
 SELECT
     s.player_id,
@@ -32,12 +50,8 @@ SELECT
 FROM sezona_igraca s
 JOIN dbo.dim_player p ON p.player_id = s.player_id
 JOIN dbo.dim_club c   ON c.club_id = s.club_id
-OUTER APPLY (SELECT TOP 1 fv.market_value_in_eur FROM dbo.fact_valuation fv
-             WHERE fv.player_id = s.player_id AND fv.date_key <= s.season * 10000 + 801
-             ORDER BY fv.date_key DESC) vp
-OUTER APPLY (SELECT TOP 1 fv.market_value_in_eur FROM dbo.fact_valuation fv
-             WHERE fv.player_id = s.player_id AND fv.date_key <= (s.season + 1) * 10000 + 630
-             ORDER BY fv.date_key DESC) vk;
+LEFT JOIN vrednost_pocetak vp ON vp.player_id = s.player_id AND vp.season = s.season AND vp.rb = 1
+LEFT JOIN vrednost_kraj vk    ON vk.player_id = s.player_id AND vk.season = s.season AND vk.rb = 1;
 GO
 
 IF OBJECT_ID('dbo.player_season_stats', 'U') IS NOT NULL DROP TABLE dbo.player_season_stats;
