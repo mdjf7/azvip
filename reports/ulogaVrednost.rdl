@@ -11,7 +11,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.1.30001.02</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2026-11-23T03:39:56.9872923Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2026-11-24T19:10:57.0988217Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
@@ -713,7 +713,7 @@ ORDER BY sezona, uloga, rast_mil DESC;</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!minuti.Value)</Value>
+                                  <Value>=Round(Avg(Fields!minuti.Value), 0)</Value>
                                   <Style>
                                     <FontWeight>Normal</FontWeight>
                                     <Color>#333333</Color>
@@ -751,7 +751,7 @@ ORDER BY sezona, uloga, rast_mil DESC;</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!golova.Value)</Value>
+                                  <Value>=Round(Avg(Fields!golova.Value), 1)</Value>
                                   <Style>
                                     <FontWeight>Normal</FontWeight>
                                     <Color>#333333</Color>
@@ -789,7 +789,7 @@ ORDER BY sezona, uloga, rast_mil DESC;</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!asistencija.Value)</Value>
+                                  <Value>=Round(Avg(Fields!asistencija.Value), 1)</Value>
                                   <Style>
                                     <FontWeight>Normal</FontWeight>
                                     <Color>#333333</Color>
@@ -827,7 +827,7 @@ ORDER BY sezona, uloga, rast_mil DESC;</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!vrednost_pocetak_mil.Value)</Value>
+                                  <Value>=Avg(Fields!vrednost_pocetak_mil.Value)</Value>
                                   <Style>
                                     <FontWeight>Normal</FontWeight>
                                     <Format>n1</Format>
@@ -866,7 +866,7 @@ ORDER BY sezona, uloga, rast_mil DESC;</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!vrednost_kraj_mil.Value)</Value>
+                                  <Value>=Avg(Fields!vrednost_kraj_mil.Value)</Value>
                                   <Style>
                                     <FontWeight>Normal</FontWeight>
                                     <Format>n1</Format>
@@ -987,7 +987,7 @@ ORDER BY sezona, uloga, rast_mil DESC;</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!minuti.Value)</Value>
+                                  <Value>=Round(Avg(Fields!minuti.Value), 0)</Value>
                                   <Style>
                                     <FontWeight>Normal</FontWeight>
                                     <Color>#333333</Color>
@@ -1025,7 +1025,7 @@ ORDER BY sezona, uloga, rast_mil DESC;</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!golova.Value)</Value>
+                                  <Value>=Round(Avg(Fields!golova.Value), 1)</Value>
                                   <Style>
                                     <FontWeight>Normal</FontWeight>
                                     <Color>#333333</Color>
@@ -1063,7 +1063,7 @@ ORDER BY sezona, uloga, rast_mil DESC;</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!asistencija.Value)</Value>
+                                  <Value>=Round(Avg(Fields!asistencija.Value), 1)</Value>
                                   <Style>
                                     <FontWeight>Normal</FontWeight>
                                     <Color>#333333</Color>
@@ -1101,7 +1101,7 @@ ORDER BY sezona, uloga, rast_mil DESC;</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!vrednost_pocetak_mil.Value)</Value>
+                                  <Value>=Avg(Fields!vrednost_pocetak_mil.Value)</Value>
                                   <Style>
                                     <FontWeight>Normal</FontWeight>
                                     <Format>n1</Format>
@@ -1140,7 +1140,7 @@ ORDER BY sezona, uloga, rast_mil DESC;</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!vrednost_kraj_mil.Value)</Value>
+                                  <Value>=Avg(Fields!vrednost_kraj_mil.Value)</Value>
                                   <Style>
                                     <FontWeight>Normal</FontWeight>
                                     <Format>n1</Format>
@@ -1257,7 +1257,7 @@ ORDER BY sezona, uloga, rast_mil DESC;</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!minuti.Value)</Value>
+                                  <Value>=Round(Avg(Fields!minuti.Value), 0)</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>#333333</Color>
@@ -1290,7 +1290,7 @@ ORDER BY sezona, uloga, rast_mil DESC;</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!golova.Value)</Value>
+                                  <Value>=Round(Avg(Fields!golova.Value), 1)</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>#333333</Color>
@@ -1323,7 +1323,7 @@ ORDER BY sezona, uloga, rast_mil DESC;</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!asistencija.Value)</Value>
+                                  <Value>=Round(Avg(Fields!asistencija.Value), 1)</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>#333333</Color>
@@ -1356,7 +1356,7 @@ ORDER BY sezona, uloga, rast_mil DESC;</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!vrednost_pocetak_mil.Value)</Value>
+                                  <Value>=Avg(Fields!vrednost_pocetak_mil.Value)</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>n1</Format>
@@ -1390,7 +1390,7 @@ ORDER BY sezona, uloga, rast_mil DESC;</CommandText>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Fields!vrednost_kraj_mil.Value)</Value>
+                                  <Value>=Avg(Fields!vrednost_kraj_mil.Value)</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                     <Format>n1</Format>
@@ -1921,7 +1921,7 @@ ORDER BY sezona, uloga, rast_mil DESC;</CommandText>
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>Ukupno</Value>
+                                <Value>Prosek svih</Value>
                                 <Style>
                                   <FontStyle>Normal</FontStyle>
                                   <FontSize>12pt</FontSize>
@@ -2097,7 +2097,7 @@ ORDER BY sezona, uloga, rast_mil DESC;</CommandText>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Globals!ExecutionTime</Value>
+                      <Value />
                       <Style />
                     </TextRun>
                   </TextRuns>
